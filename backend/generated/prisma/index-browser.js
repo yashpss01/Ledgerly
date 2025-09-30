@@ -120,11 +120,35 @@ exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
   Serializable: 'Serializable'
 });
 
-exports.Prisma.UserScalarFieldEnum = {
+exports.Prisma.UsersScalarFieldEnum = {
   id: 'id',
-  name: 'name',
+  username: 'username',
+  password: 'password',
+  age: 'age',
   email: 'email',
   createdAt: 'createdAt'
+};
+
+exports.Prisma.CategoryScalarFieldEnum = {
+  id: 'id',
+  name: 'name'
+};
+
+exports.Prisma.TransactionsScalarFieldEnum = {
+  id: 'id',
+  amount: 'amount',
+  type: 'type',
+  createdAt: 'createdAt',
+  catId: 'catId',
+  userId: 'userId'
+};
+
+exports.Prisma.BudgetsScalarFieldEnum = {
+  id: 'id',
+  limit: 'limit',
+  month: 'month',
+  createdAt: 'createdAt',
+  userId: 'userId'
 };
 
 exports.Prisma.SortOrder = {
@@ -132,14 +156,30 @@ exports.Prisma.SortOrder = {
   desc: 'desc'
 };
 
-exports.Prisma.UserOrderByRelevanceFieldEnum = {
-  name: 'name',
+exports.Prisma.UsersOrderByRelevanceFieldEnum = {
+  username: 'username',
+  password: 'password',
   email: 'email'
+};
+
+exports.Prisma.CategoryOrderByRelevanceFieldEnum = {
+  name: 'name'
+};
+
+exports.Prisma.TransactionsOrderByRelevanceFieldEnum = {
+  type: 'type'
+};
+
+exports.Prisma.BudgetsOrderByRelevanceFieldEnum = {
+  month: 'month'
 };
 
 
 exports.Prisma.ModelName = {
-  User: 'User'
+  Users: 'Users',
+  Category: 'Category',
+  Transactions: 'Transactions',
+  Budgets: 'Budgets'
 };
 
 /**

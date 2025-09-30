@@ -1,29 +1,39 @@
-const {PrismaClient} = require("./generated/prisma")
-const prisma = new PrismaClient();
+const express = require('express')
+const app = express()
+const prisma = require("./config/db")
 
-const express = require("express")
-const app = express();
+const authRoutes = require("./routes/auth.routes")
 
-const dotenv = require("dotenv")
-dotenv.config();
 
-const cors = require("cors")
+
+const cors = require('cors')
 app.use(cors())
+
+require('dotenv').config()
 app.use(express.json())
 
+const PORT = 3000
 
-//sample
-app.get("/testing",(req,res)=>{
-    console.log("testing successful" )
-    res.send("OK")
+//test
+app.get("/ping",async (req,res)=>{
+    try{
+        const data =  await prisma.users.findMany({
+            where:{
+                id : 1
+            }
+        })
+        return res.send(data)
+
+    }catch(err){
+        console.log(err)
+        return res.status(400).send("Something went wrong"+ err)
+    }
+
 })
 
+app.use("/auth",authRoutes)
 
 
-
-
-
-
-app.listen(3000,()=>{
-    console.log("server is listening")
+app.listen(PORT,()=>{
+    console.log("Server is running")
 })
